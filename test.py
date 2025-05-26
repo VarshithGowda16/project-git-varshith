@@ -20,9 +20,11 @@ class TaskManager:
 
     def add_task(self, new_task):
         """Adds a new task to the list and saves."""
+        # The validation happens in the main loop before calling this method
         self.tasks.append(new_task)
         self._save_tasks()
         print(f"Task '{new_task}' added.")
+
 
     def list_tasks(self):
         """Lists all current tasks with their indices."""
@@ -74,9 +76,14 @@ while True:
         print("Invalid input. Please enter a number.")
         continue
 
-    if choice == 1:
-        new_task_desc = input("Enter the task description: ")
-        task_manager.add_task(new_task_desc)
+    elif choice == 1:
+        while True:
+            new_task_desc = input("Enter the task description: ").strip() # .strip() removes leading/trailing whitespace
+            if new_task_desc: # Check if the string is not empty after stripping
+                task_manager.add_task(new_task_desc)
+                break # Exit the loop if input is valid
+            else:
+                print("Task description cannot be empty. Please try again.")
     elif choice == 2:
         task_manager.list_tasks()
     elif choice == 3:
