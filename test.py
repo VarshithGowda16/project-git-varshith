@@ -33,3 +33,24 @@ class TaskManager:
         for i, task in enumerate(self.tasks):
             print(f"{i + 1}. {task}")
         print("------------------")
+def complete_task(self, task_index):
+        """Marks a task as complete (removes it) and saves."""
+        if 0 <= task_index < len(self.tasks):
+            completed_task = self.tasks.pop(task_index)
+            self._save_tasks()
+            print(f"Task '{completed_task}' marked as complete.")
+            return True
+        else:
+            print("Invalid task number.")
+            return False
+
+    def delete_task(self, task_index):
+        """Deletes a task from the list and saves."""
+        if 0 <= task_index < len(self.tasks):
+            deleted_task = self.tasks.pop(task_index)
+            self._save_tasks()
+            print(f"Task '{deleted_task}' deleted.")
+            return True
+        else:
+            print("Invalid task number.")
+            return False
