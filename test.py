@@ -98,3 +98,5 @@ while True:
         break
     else:
         print("Invalid choice. Please enter a number between 1 and 5.")
+    
+# This implicitly handles the continuous operation and exit condition
