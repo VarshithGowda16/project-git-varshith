@@ -54,3 +54,47 @@ def complete_task(self, task_index):
         else:
             print("Invalid task number.")
             return False
+
+task_manager = TaskManager() # Initialize the TaskManager instance
+
+print("Welcome to your simple Task Manager!")
+
+while True:
+    print("\n--- Task Manager Menu ---")
+    print("1. Add Task")
+    print("2. List Tasks")
+    print("3. Complete Task")
+    print("4. Delete Task")
+    print("5. Exit")
+    print("-------------------------")
+
+    try:
+        choice = int(input("Enter your choice: "))
+    except ValueError:
+        print("Invalid input. Please enter a number.")
+        continue
+
+    if choice == 1:
+        new_task_desc = input("Enter the task description: ")
+        task_manager.add_task(new_task_desc)
+    elif choice == 2:
+        task_manager.list_tasks()
+    elif choice == 3:
+        task_manager.list_tasks()
+        try:
+            task_number_to_complete = int(input("Enter the number of the task to complete: ")) - 1
+            task_manager.complete_task(task_number_to_complete)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+    elif choice == 4:
+        task_manager.list_tasks()
+        try:
+            task_number_to_delete = int(input("Enter the number of the task to delete: ")) - 1
+            task_manager.delete_task(task_number_to_delete)
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+    elif choice == 5:
+        print("Exiting Task Manager. Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter a number between 1 and 5.")
